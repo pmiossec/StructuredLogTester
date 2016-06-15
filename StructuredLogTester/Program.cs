@@ -23,7 +23,14 @@ namespace StructuredLogTester
 
             AndLogAnException();
 
+            AndLogForDummmies();
+
             Console.ReadLine();
+        }
+
+        private static void AndLogForDummmies()
+        {
+            new DummyClass(logger).IDoNothingButIDoItWell();
         }
 
         private static void AndLogAnException()
