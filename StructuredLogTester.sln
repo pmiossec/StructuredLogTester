@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionsItems", "SolutionsItems", "{22E3A342-77E4-42B1-9956-F88A7FBFF3E9}"
 	ProjectSection(SolutionItems) = preProject
 		CreateMsSqlDatabase.sql = CreateMsSqlDatabase.sql
+		README.MD = README.MD
 	EndProjectSection
 EndProject
 Global
