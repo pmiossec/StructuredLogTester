@@ -1,4 +1,5 @@
 ﻿using Serilog;
+using Serilog.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,7 @@ namespace StructuredLogTester
             logger = new LoggerConfiguration()
                 .ReadFrom.AppSettings()
                 .MinimumLevel.Debug()
+                .Enrich.WithExceptionDetails()
                 .Enrich.WithThreadId()
                 .Enrich.WithProperty("MyMetaProperty", "Oh! the beautiful value!")
                 .WriteTo.ColoredConsole()
