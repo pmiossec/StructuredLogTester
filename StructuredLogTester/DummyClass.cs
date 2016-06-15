@@ -19,6 +19,10 @@ namespace StructuredLogTester
         public void IDoNothingButIDoItWell()
         {
             _logger.Information("Log from my class");
+            var otherLogger = _logger
+                .ForContext("prop1", "[MetaData]")
+                .ForContext("prop2", "[OtherMetaData]");
+            otherLogger.Information("Log with context properties");
         }
     }
 }
