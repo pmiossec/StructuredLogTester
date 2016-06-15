@@ -19,7 +19,26 @@ namespace StructuredLogTester
 
             AndLogAnObject();
 
+            AndLogAnException();
+
             Console.ReadLine();
+        }
+
+        private static void AndLogAnException()
+        {
+            try
+            {
+                IWillThrowAnException();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "An Error occured");
+            }
+        }
+
+        private static void IWillThrowAnException()
+        {
+            throw new Exception("Oh not I did it again!");
         }
 
         private static void AndLogAStruct()
