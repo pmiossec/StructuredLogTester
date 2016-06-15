@@ -19,6 +19,8 @@ namespace StructuredLogTester
 
             AndLogAStruct();
 
+            AndLogWithFormater();
+
             AndLogAnObject();
 
             AndLogAnException();
@@ -26,6 +28,12 @@ namespace StructuredLogTester
             AndLogForDummmies();
 
             Console.ReadLine();
+        }
+
+        private static void AndLogWithFormater()
+        {
+            var age = 25.7;
+            logger.Information("My age is {age:0}", age);
         }
 
         private static void AndLogForDummmies()
