@@ -1,5 +1,6 @@
 ﻿using Serilog;
 using Serilog.Exceptions;
+using Serilog.Sinks.MSSqlServer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,15 @@ namespace StructuredLogTester
 
         private static void InitializeSerilog()
         {
+            var connectionString = @"Data Source=(localdb)\V11.0;Initial Catalog=Serilog;Integrated Security=True";  // or the name of a connection string in your .config file
+            var tableName = "Logs";
+            var columnOptions = new ColumnOptions();  // optional
+            // Don't include the Properties XML column.
+            columnOptions.Store.Remove(StandardColumn.Properties);
+
+            // Do include the log event data as JSON.
+            columnOptions.Store.Add(StandardColumn.LogEvent);
+
             logger = new LoggerConfiguration()
                 .ReadFrom.AppSettings()
                 .MinimumLevel.Debug()
@@ -68,6 +78,7 @@ namespace StructuredLogTester
                 .Enrich.WithProperty("MyMetaProperty", "Oh! the beautiful value!")
                 .WriteTo.ColoredConsole()
                 .WriteTo.File(@".\myLogFile.txt")
+                .WriteTo.MSSqlServer(connectionString, tableName, autoCreateSqlTable:true, columnOptions: columnOptions)
                 //.WriteTo.EventLog("Serilog tests")
                 .CreateLogger();
         }
