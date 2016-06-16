@@ -27,7 +27,14 @@ namespace StructuredLogTester
 
             AndLogForDummmies();
 
+            AndLogUsingCommonLogging();
+
             Console.ReadLine();
+        }
+
+        private static void AndLogUsingCommonLogging()
+        {
+            new DummyClassForCommonLogging().IDoNothingButIDoItWell();
         }
 
         private static void AndLogWithFormater()
@@ -96,6 +103,9 @@ namespace StructuredLogTester
                 .WriteTo.MSSqlServer(connectionString, tableName, autoCreateSqlTable:true, columnOptions: columnOptions)
                 //.WriteTo.EventLog("Serilog tests")
                 .CreateLogger();
+
+            //To be able to use with Common.Logging
+            Log.Logger = logger;
         }
     }
 }
